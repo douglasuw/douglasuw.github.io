@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex, nofollow">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="title" content="ICM PC">
+	<meta name="theme-color" content="#222222">
+	<link rel="icon" href="_assets/compito.png">
+	<title>CCT MR</title>
+	<link rel="stylesheet" href="_assets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<style type="text/css">
+		* {
+			font-size: 13px;
+			font-family: "Arial", sans-serif;
+		}
+		body {
+			background: #e9ebee;
+			padding-top: 60px;
+		}
+		td {
+			padding: 2px 10px;
+		}
+		.badge {
+			padding: 4px 8px;
+		}
+	</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<p class="text-light m-0" style="font-size: 20px;font-weight: bold;">Controle de Registros de CCT</p>
+		<div class="ml-auto">
+			<button class="btn btn-sm btn-warning my-2 my-sm-0" type="button">Favoritas</button>
+			<button class="btn btn-sm btn-light my-2 my-sm-0" type="button">Base de dados</button>
+			<button class="btn btn-sm btn-light my-2 my-sm-0" type="button">Arquivados</button>
+			<button class="btn btn-sm btn-outline-light my-2 my-sm-0" type="button">Logs</button>
+			<span class="text-light mx-3"></span>
+			<input class="form-control my-0 py-0" style="display: inline-block;width: 150px;height: 28px;" type="date" name="">
+			<select class="form-control my-0 py-0" style="display: inline-block;width: 100px;height: 28px;">
+				<option value="ALL">Todos</option>
+				<option value="AC">AC</option>
+				<option value="AL">AL</option>
+				<option value="AM">AM</option>
+				<option value="AP">AP</option>
+				<option value="BA">BA</option>
+				<option value="CE">CE</option>
+				<option value="DF">DF</option>
+				<option value="ES">ES</option>
+				<option value="GO">GO</option>
+				<option value="MA">MA</option>
+				<option value="MG">MG</option>
+				<option value="MS">MS</option>
+				<option value="MT">MT</option>
+				<option value="PA">PA</option>
+				<option value="PB">PB</option>
+				<option value="PE">PE</option>
+				<option value="PI">PI</option>
+				<option value="PR">PR</option>
+				<option value="RJ">RJ</option>
+				<option value="RN">RN</option>
+				<option value="RO">RO</option>
+				<option value="RR">RR</option>
+				<option value="RS">RS</option>
+				<option value="SC">SC</option>
+				<option value="SE">SE</option>
+				<option value="SP">SP</option>
+				<option value="TO">TO</option>
+			</select>
+			<button class="btn btn-sm btn-danger my-2 my-sm-0" type="button" id="cctbtn-lan">Lançada</button>
+			<button class="btn btn-sm btn-warning my-2 my-sm-0" type="button" id="cctbtn-tra">Transmitida</button>
+			<button class="btn btn-sm btn-success my-2 my-sm-0" type="button" id="cctbtn-pro">Protocolada</button>
+			<button class="btn btn-sm btn-primary my-2 my-sm-0" type="button" id="cctbtn-reg">Registrada</button>
+			<button class="btn btn-sm btn-dark my-2 my-sm-0" type="button" id="cctbtn-all">Todos</button>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				<div class="d-flex flex-row justify-content-between align-items-center mb-3">
+					<p class="my-0">Atualização: 15:42 19/11/2020</p>
+					<button type="button" class="btn btn-sm btn-success">Exportar para Excel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col">
+				
+				<table class="table table-bordered table-striped table-hover bg-white shadow-sm">
+					<thead>
+						<tr>
+							<th width="100">Gestor</th>
+							<th width="70">Código</th>
+							<th>Descrição</th>
+							<th width="120">Tipo</th>
+							<th width="140">Registro MR</th>
+							<th width="120">Situação</th>
+							<th width="90">Link</th>
+							<th width="100">Captação</th>
+							<th>Observações</th>
+							<th width="120">Ação</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-reg">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-primary">Registrada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-pro">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-success">Protocolada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-pro">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-success">Protocolada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-tra">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-warning">Transmitida</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-lan">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-danger">Lançada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-lan">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-danger">Lançada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-tra">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-warning">Transmitida</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-pro">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-success">Protocolada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-reg">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-primary">Registrada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						<!-- REGISTRO -->
+						<tr class="cctregistro cctregistro-lan">
+							<td>Jackson</td>
+							<td>1852</td>
+							<td>MT - SEAC x Motoristas 2022/2022</td>
+							<td>Convenção</td>
+							<td>MR068015/2021</td>
+							<td><span class="badge badge-danger">Lançada</span></td>
+							<td><a class="btn btn-sm btn-info" href="http://www3.mte.gov.br/sistemas/mediador/Resumo/ResumoVisualizar?NrSolicitacao=MR068015/2021" target="_blank">Acessar</a></td>
+							<td>16/12/2021</td>
+							<td>CCT com repactuação já concedida - Divulgada e migrada no sistema. Preencher data de registro</td>
+							<td>
+								<button type="button" class="btn btn-sm btn-outline-warning" data-tooltip="tooltip" data-placement="top" title="Favorita"><i class="fas fa-star"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-dark" data-tooltip="tooltip" data-placement="top" title="Arquivar"><i class="fas fa-archive"></i></button>
+								<button type="button" class="btn btn-sm btn-outline-danger" data-tooltip="tooltip" data-placement="top" title="Deletar"><i class="far fa-trash-alt"></i></button>
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="_assets/jquery331.min.js"></script>
+	<script type="text/javascript" src="_assets/popper.min.js"></script>
+	<script type="text/javascript" src="_assets/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('[data-tooltip="tooltip"]').tooltip()
+		});
+	</script>
+	<script type="text/javascript">
+		$("#cctbtn-lan").click(function(){
+			$(".cctregistro").hide();
+			$(".cctregistro-lan").show();
+		});
+		$("#cctbtn-tra").click(function(){
+			$(".cctregistro").hide();
+			$(".cctregistro-tra").show();
+		});
+		$("#cctbtn-pro").click(function(){
+			$(".cctregistro").hide();
+			$(".cctregistro-pro").show();
+		});
+		$("#cctbtn-reg").click(function(){
+			$(".cctregistro").hide();
+			$(".cctregistro-reg").show();
+		});
+		$("#cctbtn-all").click(function(){
+			$(".cctregistro").show();
+		});
+	</script>
+
+</body>
+</html>

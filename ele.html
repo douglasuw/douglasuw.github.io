@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lista de Compras de Materiais Elétricos</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 20px;
+		}
+
+		h1 {
+			text-align: center;
+			color: #333;
+		}
+
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		.room {
+			margin: 30px 0px;
+		}
+
+		.room h2 {
+			color: #555;
+			margin-bottom: 10px;
+		}
+
+		.item {
+			margin-bottom: 10px;
+		}
+
+		label {
+			display: flex;
+			flex-direction: row;
+			justify-content: initial;
+			align-items: center;
+			gap: 10px;
+			flex-wrap: wrap;
+			margin-bottom: 5px;
+			font-weight: bold;
+		}
+
+		input[type="checkbox"] {
+			width: 20px;
+			height: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Lista de Materiais Elétricos</h1>
+	</div>
+
+	<script>
+		const comodos = {
+			"Quarto": [
+				"3 Tomadas Simples",
+				"1 Interruptor Simples",
+				"1 Cega"
+				],
+			"Suíte": [
+				"2 Interruptores Duplos",
+				"5 Tomadas Simples",
+				"2 Cegas",
+				"1 Com furo para chuveiro"
+				],
+			"Banheiro": [
+				"1 interruptor simples",
+				"1 tomada com interruptor",
+				"1 com furo pro chuveiro"
+				],
+			"Sala": [
+				"2 interruptor triplo",
+				"4 tomadas simples",
+				"1 tomada dupla",
+				"1 com furo pra internet",
+				"1 cega pra saída de tv a cabo",
+				"1 interruptor duplo"
+				],
+			"Cozinha": [
+				"1 interruptor duplo",
+				"4 tomadas simples",
+				"2 cegas",
+				"1 espelho pro sugar",
+				"3 tomadas externas (geladeira, forno e microondas)"
+				],
+			"Área de serviço": [
+				"1 interruptor simples",
+				"1 tomada simples",
+				"1 tomada externa para o fio que entra na AS pela parede da sacada"
+				],
+		};
+
+		function geradorID(str) {
+			return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s/g, "");
+		}
+
+		function insertItems(roomName, roomItems) {
+			const container = document.querySelector('.container');
+			const roomElement = document.createElement('div');
+			roomElement.classList.add('room');
+			roomElement.id = geradorID(roomName);
+			container.appendChild(roomElement);
+
+			const roomTitle = document.createElement("h2");
+			roomTitle.textContent = roomName;
+			roomElement.appendChild(roomTitle);
+
+			roomItems.forEach(item => {
+				const div = document.createElement("div");
+				div.classList.add("item");
+				const label = document.createElement("label");
+				const input = document.createElement("input");
+				input.type = "checkbox";
+				label.appendChild(input);
+				label.appendChild(document.createTextNode(item));
+				div.appendChild(label);
+				roomElement.appendChild(div);
+			});
+		}
+
+		for (const room in comodos) {
+			insertItems(room, comodos[room]);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Visus Collab</title>
+	<!-- <link rel="stylesheet" href="style.css?v=<?= md5(uniqid("",true)); ?>"> -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;800&display=swap">
+	<style type="text/css">
+	* {font-family: 'Poppins', sans-serif; box-sizing: border-box; } body {background: #cecece; padding: 0; } main {max-width: 660px; width: 100%; margin: auto; background-color: #F3F3F3; } #banner_border {width: 100%; height: 4px; background: linear-gradient(45deg, #A15FE3, #C494F3); } #banner {width: 100%; height: 292px; margin: 0; padding: 0; background-position: center; background-size: cover; } #header_title {position: relative; z-index: 100; background-color: #F3F3F3; text-align: center; max-width: 680px; width: 412px; height: 114px; margin: -58px auto 0px auto; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0px; } span#header_title_normal {color: #2B2925; font-weight: 300; font-size: 24px; } span#header_title_bold {color: #2B2925; font-weight: 800; font-size: 36px; } span#header_title_collab {color: #A15FE3; font-weight: 800; font-size: 36px; } #content {padding: 20px 40px; } #content #divider {height: 2px; width: 100%; background: #C4C4C4; margin: 30px auto; } #content h1 {color: #000000; font-size: 20px; } #content p {color: #64656A; font-size: 16px; } #content p span {color: #000000; font-size: 16px; font-weight: 700; } #content .link {display: flex; flex-direction: row; justify-content: center; align-items: center; } #content a {text-decoration: none; color: #FFFFFF; padding: 12px 34px; border-radius: 8px; min-width: 176px; text-align: center; } #content a.link_collab {background-color: #A15FE3; } #content a.link_dark {background-color: #2B2925; } footer {padding: 10px 20px 20px 20px; } #footer_inside {background-color: #64656A; color: #FFFFFF; border-radius: 8px; height: 110px; padding: 10px 40px; margin: 0px auto; display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 15px; } #footer_inside p {font-size: 8px; margin: 0; padding: 0; } #footer_brand {display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 15px; } #footer_divider_v {background-color: #25CE7B; width: 1px; height: 58px; display: block; } #footer_divider_h {background-color: #25CE7B; min-width: 75%; height: 1px; display: none; } #footer_social {display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; } #footer_social_icons {display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 15px; } #footer_social_icons a {text-decoration: none; } #footer_social_icons img {padding: 0; margin: 0; } @media screen and (max-width: 660px) {#banner {height: 40vw; } #header_title {margin: -20px auto 0px auto; width: calc(100% - 40px); } span#header_title_normal {font-size: 18px; } span#header_title_bold {font-size: 28px; } span#header_title_collab {font-size: 28px; } #footer_inside {height: auto; padding: 40px 10px; flex-direction: column; gap: 40px; } #footer_inside p br {display: none; } #footer_brand {flex-direction: column; gap: 10px; } #footer_divider_v {display: none; } #footer_divider_h {display: block; } }
+	</style>
+</head>
+<body>
+
+	<main>
+		
+		<header>
+			<div id="banner_border"></div>
+			<div id="banner" style="background-image: url('img/top.webp');"></div>
+			<div id="header_title">
+				<div>
+					<span id="header_title_normal">Novo convite para colaborar</span>
+				</div>
+				<div>
+					<span id="header_title_bold">com</span>
+					<span id="header_title_collab">Visus Collab</span>
+				</div>
+			</div>
+		</header>
+
+		<section id="content">
+			<h1>Olá!</h1>
+			<p>Você foi convidado a fazer parte do empreendimento [Nome do empreendimento] por <span>[Nome do proprietário]</span>.</p>
+			<p>Com o Visus Collab, você poderá centralizar e gerenciar todos os documentos do seu empreendimento em um único repositório na nuvem, facilitando o compartilhamento de informações e tornando a colaboração entre os membros da equipe mais eficiente.</p>
+			<div class="link"><a class="link_collab" href="" target="_blank">ACESSAR</a></div>
+			<div id="divider"></div>
+			<h1>É o seu primeiro acesso?</h1>
+			<p>Caso seja seu primeiro acesso à plataforma Visus, você deverá criar uma conta AltoQi para colaborar. Utilize o botão abaixo para criar a sua conta.</p>
+			<div class="link"><a class="link_dark" href="" target="_blank">CRIAR CONTA</a></div>
+		</section>
+
+		<footer>
+			<div id="footer_inside">
+				<div id="footer_brand">
+					<img src="img/altoqi.webp">
+					<p>Uma nova história <br> para a construção civil</p>
+				</div>
+				<div id="footer_divider_v"></div>
+				<div id="footer_divider_h"></div>
+				<div id="footer_social">
+					<p>Estamos conectados. Junte-se a nós.</p>
+					<div id="footer_social_icons">
+						<a href="" target="_blank"><img src="img/facebook.webp"></a>
+						<a href="" target="_blank"><img src="img/instagram.webp"></a>
+						<a href="" target="_blank"><img src="img/linkedin.webp"></a>
+						<a href="" target="_blank"><img src="img/youtube.webp"></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</main>
+
+</body>
+</html>

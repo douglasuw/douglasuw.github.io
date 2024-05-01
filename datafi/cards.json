@@ -6,7 +6,7 @@
 		"campaigns": 3,
 		"lastReport": "2024-04-21 14:32:25",
 		"metricName": "meta.cpc",
-		"metricValue": 0.59,
+		"metricValue": 0.28,
 		"manager": "Jonas Silva"
 	},
 	{
@@ -17,6 +17,46 @@
 		"lastReport": "2024-04-21 14:32:25",
 		"metricName": "meta.cpc",
 		"metricValue": 0.59,
+		"manager": "Pedro Madeira"
+	},
+	{
+		"name": "Beauty Estética",
+		"meta": 0,
+		"google": 1,
+		"campaigns": 1,
+		"lastReport": "2024-04-21 14:32:25",
+		"metricName": "google.cpc",
+		"metricValue": 0.74,
+		"manager": "Pedro Madeira"
+	},
+	{
+		"name": "Academia Corpus",
+		"meta": 1,
+		"google": 0,
+		"campaigns": 1,
+		"lastReport": "2024-04-21 14:32:25",
+		"metricName": "meta.views",
+		"metricValue": 1700,
+		"manager": "Pedro Madeira"
+	},
+	{
+		"name": "Imobiliária Home",
+		"meta": 1,
+		"google": 0,
+		"campaigns": 1,
+		"lastReport": "2024-04-21 14:32:25",
+		"metricName": "meta.cpc",
+		"metricValue": 0.41,
 		"manager": "Jonas Silva"
+	},
+	{
+		"name": "Builder Construtora",
+		"meta": 1,
+		"google": 1,
+		"campaigns": 2,
+		"lastReport": "2024-04-21 14:32:25",
+		"metricName": "google.cpc",
+		"metricValue": 0.22,
+		"manager": "Pedro Madeira"
 	}
 ]

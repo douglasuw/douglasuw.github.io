@@ -1,0 +1,22 @@
+[
+	{
+		"name": "Advogada Maria",
+		"meta": 1,
+		"google": 1,
+		"campaigns": 3,
+		"lastReport": "2024-04-21 14:32:25",
+		"metricName": "meta.cpc",
+		"metricValue": 0.59,
+		"manager": "Jonas Silva"
+	},
+	{
+		"name": "Padaria Floripa",
+		"meta": 1,
+		"google": 0,
+		"campaigns": 1,
+		"lastReport": "2024-04-21 14:32:25",
+		"metricName": "meta.cpc",
+		"metricValue": 0.59,
+		"manager": "Jonas Silva"
+	}
+]

@@ -1,72 +1,81 @@
 [
-	{
-		"name": "Advogada Maria",
-		"meta": 1,
-		"google": 1,
-		"campaigns": 3,
-		"lastReport": "2024-04-21 14:32:25",
-		"metricName": "meta.cpc",
-		"metricValue": 0.28,
-		"manager": "Jonas Silva"
-	},
-	{
-		"name": "Padaria Floripa",
-		"meta": 1,
-		"google": 0,
-		"campaigns": 1,
-		"lastReport": "2024-04-21 14:32:25",
-		"metricName": "meta.cpc",
-		"metricValue": 0.59,
-		"manager": "Pedro Madeira"
-	},
-	{
-		"name": "Beauty Estética",
-		"meta": 0,
-		"google": 1,
-		"campaigns": 1,
-		"lastReport": "2024-04-21 14:32:25",
-		"metricName": "google.cpc",
-		"metricValue": 0.74,
-		"manager": "Pedro Madeira"
-	},
-	{
-		"name": "Academia Corpus",
-		"meta": 1,
-		"google": 0,
-		"campaigns": 1,
-		"lastReport": "2024-04-21 14:32:25",
-		"metricName": "meta.views",
-		"metricValue": 1700,
-		"manager": "Pedro Madeira"
-	},
-	{
-		"name": "Imobiliária Home",
-		"meta": 1,
-		"google": 0,
-		"campaigns": 1,
-		"lastReport": "2024-04-21 14:32:25",
-		"metricName": "meta.cpc",
-		"metricValue": 0.41,
-		"manager": "Jonas Silva"
-	},
-	{
-		"name": "Builder Construtora",
-		"meta": 1,
-		"google": 1,
-		"campaigns": 2,
-		"lastReport": "2024-04-21 14:32:25",
-		"metricName": "google.cpc",
-		"metricValue": 0.22,
-		"manager": "Pedro Madeira"
-	},
-	{
-		"name": "Medicin Consultório Médico",
-		"meta": 1,
-		"google": 1,
-		"campaigns": 2,
-		"lastReport": "2024-04-21 14:32:25",
-		"metricName": "google.cpc",
-		"metricValue": 0.34,
-		"manager": "Pedro Madeira"
-	}
+	[
+    {
+        "name": "Advogada Maria",
+        "code": "lvpfxg3njpgb-advogada-maria",
+        "meta": 1,
+        "google": 1,
+        "campaigns": 3,
+        "lastReport": "2024-04-21 14:32:25",
+        "metricName": "meta.cpc",
+        "metricValue": 0.28,
+        "manager": "Jonas Silva"
+    },
+    {
+        "name": "Padaria Floripa",
+        "code": "lvpfxg3nqk85-padaria-floripa",
+        "meta": 1,
+        "google": 0,
+        "campaigns": 1,
+        "lastReport": "2024-04-21 14:32:25",
+        "metricName": "meta.cpc",
+        "metricValue": 0.59,
+        "manager": "Pedro Madeira"
+    },
+    {
+        "name": "Beauty Estética",
+        "code": "lvpfxg3nc9zw-beauty-estetica",
+        "meta": 0,
+        "google": 1,
+        "campaigns": 1,
+        "lastReport": "2024-04-21 14:32:25",
+        "metricName": "google.cpc",
+        "metricValue": 0.74,
+        "manager": "Pedro Madeira"
+    },
+    {
+        "name": "Academia Corpus",
+        "code": "lvpfxg3n9u0p-academia-corpus",
+        "meta": 1,
+        "google": 0,
+        "campaigns": 1,
+        "lastReport": "2024-04-21 14:32:25",
+        "metricName": "meta.views",
+        "metricValue": 1700,
+        "manager": "Pedro Madeira"
+    },
+    {
+        "name": "Imobiliária Home",
+        "code": "lvpfxg3nbm4p-imobiliaria-home",
+        "meta": 1,
+        "google": 0,
+        "campaigns": 1,
+        "lastReport": "2024-04-21 14:32:25",
+        "metricName": "meta.cpc",
+        "metricValue": 0.41,
+        "manager": "Jonas Silva"
+    },
+    {
+        "name": "Builder Construtora",
+        "code": "lvpfxg3nzqlf-builder-construtora",
+        "meta": 1,
+        "google": 1,
+        "campaigns": 2,
+        "lastReport": "2024-04-21 14:32:25",
+        "metricName": "google.cpc",
+        "metricValue": 0.22,
+        "manager": "Pedro Madeira"
+    },
+    {
+        "name": "Medicin Consultório Médico",
+        "code": "lvpfxg3nv3y3-medicin-consultorio-medico",
+        "meta": 1,
+        "google": 1,
+        "campaigns": 2,
+        "lastReport": "2024-04-21 14:32:25",
+        "metricName": "google.cpc",
+        "metricValue": 0.34,
+        "manager": "Jonas Silva"
+    }
+]
 ]

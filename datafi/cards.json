@@ -58,5 +58,15 @@
 		"metricName": "google.cpc",
 		"metricValue": 0.22,
 		"manager": "Pedro Madeira"
+	},
+	{
+		"name": "Medicin Consultório Médico",
+		"meta": 1,
+		"google": 1,
+		"campaigns": 2,
+		"lastReport": "2024-04-21 14:32:25",
+		"metricName": "google.cpc",
+		"metricValue": 0.34,
+		"manager": "Pedro Madeira"
 	}
 ]

@@ -1,4 +1,4 @@
-npm install xxxx --legacy-peer-deps
+npm install --legacy-peer-deps
 
 $env:NODE_OPTIONS = '--openssl-legacy-provider'
 

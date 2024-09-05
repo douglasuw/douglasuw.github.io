@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta Fipe</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(45deg, #151515 50%, #393939, #151515);
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 5px;
+      padding: 20px;
+      background-color: #0C0C0C;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #A293F9;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .vehicle {
+      padding: 20px;
+      background-color: #131313;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+
+    /*.vehicle:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }*/
+
+    .vehicle h2 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #68DA9B;
+    }
+
+    .vehicle p {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+
+    .vehicle p span {
+      color: #999999;
+    }
+
+    .loading {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #b3b3b3;
+    }
+
+    @media(max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .vehicle h2 {
+        font-size: 1.3rem;
+      }
+
+      .vehicle p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tabela Fipe</h1>
+    <div id="vehicles">
+      <p class="loading">Carregando dados...</p>
+    </div>
+  </div>
+
+  <script>
+    const vehicles = [
+      'https://parallelum.com.br/fipe/api/v1/carros/marcas/26/modelos/6356/anos/2014-1',
+      'https://parallelum.com.br/fipe/api/v1/carros/marcas/22/modelos/8004/anos/2018-1'
+    ];
+
+    const vehiclesContainer = document.getElementById('vehicles');
+
+    async function fetchVehicleData() {
+      try {
+        let htmlContent = '';
+        for (let url of vehicles) {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          htmlContent += `
+            <div class="vehicle">
+              <h2>${data.Marca} - ${data.Modelo} (${data.AnoModelo})</h2>
+              <p><span>Valor:</span> ${data.Valor}</p>
+              <p><span>Combustível:</span> ${data.Combustivel} (${data.SiglaCombustivel})</p>
+              <p><span>Código Fipe:</span> ${data.CodigoFipe}</p>
+              <p><span>Mês de Referência:</span> ${data.MesReferencia}</p>
+            </div>
+          `;
+        }
+
+        vehiclesContainer.innerHTML = htmlContent;
+      } catch (error) {
+        vehiclesContainer.innerHTML = '<p class="loading">Erro ao carregar os dados.</p>';
+      }
+    }
+
+    fetchVehicleData();
+  </script>
+</body>
+</html>

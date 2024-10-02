@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PHP UUID</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap">
+	<style type="text/css">
+		* {
+			font-family: 'Source Code Pro';
+			font-size: 14px;
+			box-sizing: border-box;
+		}
+		body {
+			padding: 0;
+			margin: 0;
+			background: rgb(239, 239, 231);
+		}
+
+		main {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: center;
+			align-items: stretch;
+			padding: 5px;
+		}
+
+		h3 {
+			background: rgba(203, 201, 193, 0.5);
+			border-radius: 5px;
+			padding: 10px;
+			margin: 0;
+		}
+
+		section {
+			flex: 1 1 30%;
+			width: 100%;
+			padding: 10px;
+			margin: 5px;
+			border: 1px solid #E2E0D8;
+			border-radius: 5px;
+			background: #FCFCFA;
+		}
+		section p {
+			text-align: center;
+		}
+
+		@media (max-width: 900px) {
+			main {
+				flex-direction: column;
+				align-items: center;
+				padding: 5px 15px 5px 5px;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<main>
+
+		<section>
+			<h3>[] uniqid()</h3>
+			<p id="uuid"></p>
+		</section>
+
+		<section>
+			<h3>[a] md5(uniqid())</h3>
+			<p id="uuid-lower"></p>
+		</section>
+
+		<section>
+			<h3>[a-] UID</h3>
+			<p id="uuid-lower-line"></p>
+		</section>
+
+		<section>
+			<h3>[A] UID UP</h3>
+			<p id="uuid-upper"></p>
+		</section>
+
+		<section>
+			<h3>[A-] UID UP</h3>
+			<p id="uuid-upper-line"></p>
+		</section>
+
+	</main>
+
+	<script>
+		const uuid = crypto.randomUUID();
+		function generateUUID(uuid, type = null) {
+			switch (type) {
+				case 'lower':
+					return uuid.replace(/-/g, '').toLowerCase();
+				case 'lower-':
+					return uuid.toLowerCase();
+				case 'upper':
+					return uuid.replace(/-/g, '').toUpperCase();
+				case 'upper-':
+					return uuid.toUpperCase();
+				default:
+					return uuid;
+			}
+		}
+		function insertUUIDs() {
+			document.getElementById('uuid').textContent = generateUUID(uuid);
+			document.getElementById('uuid-lower').textContent = generateUUID(uuid, 'lower');
+			document.getElementById('uuid-lower-line').textContent = generateUUID(uuid, 'lower-');
+			document.getElementById('uuid-upper').textContent = generateUUID(uuid, 'upper');
+			document.getElementById('uuid-upper-line').textContent = generateUUID(uuid, 'upper-');
+		}
+		window.onload = insertUUIDs;
+	</script>
+
+</body>
+</html>

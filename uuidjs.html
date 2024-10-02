@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>UUID</title>
+	<link rel="icon" href="https://db.eng.br/favicon.png?v=1">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap">
 	<style type="text/css">
 		* {
@@ -27,15 +28,8 @@
 			padding: 5px;
 		}
 
-		h3 {
-			background: rgba(203, 201, 193, 0.5);
-			border-radius: 5px;
-			padding: 10px;
-			margin: 0;
-		}
-
 		section {
-			flex: 1 1 30%;
+			flex: 1 1 45%;
 			width: 100%;
 			padding: 10px;
 			margin: 5px;
@@ -43,8 +37,36 @@
 			border-radius: 5px;
 			background: #FCFCFA;
 		}
+		section div {
+			background: rgba(203, 201, 193, 0.5);
+			border-radius: 5px;
+			padding: 10px;
+			margin: 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			gap: 10px;
+			font-weight: bold;
+		}
 		section p {
 			text-align: center;
+			margin: 0;
+			padding: 10px 0 0 0;
+		}
+		section label {
+			font-size: 11px;
+			font-weight: 400;
+			padding: 2px 5px;
+			border-radius: 5px;
+			border: 1px solid #F54E29;
+			color: #F54E29;
+			cursor: pointer;
+			transition: all 250ms;
+		}
+		section label:hover {
+			background: #F54E29;
+			color: #FFFFFF;
 		}
 
 		@media (max-width: 900px) {
@@ -54,39 +76,61 @@
 				padding: 5px 15px 5px 5px;
 			}
 		}
+
+		#alert {
+			position: fixed;
+			z-index: 1000;
+			bottom: 10px;
+			right: 10px;
+			background: #F54E29;
+			padding: 5px 10px;
+			border-radius: 5px;
+			color: #FEFEFE;
+			font-size: 12px;
+			display: none;
+		}
 	</style>
 </head>
 <body>
 
+	<div id="alert">Copiado <span></span></div>
+
 	<main>
 
 		<section>
-			<h3>[] uniqid()</h3>
-			<p id="uuid"></p>
-		</section>
-
-		<section>
-			<h3>[a] md5(uniqid())</h3>
+			<div>
+				<span>[UUID] a</span>
+				<label onclick="copyUUID('uuid-lower')">Copy</label>
+			</div>
 			<p id="uuid-lower"></p>
 		</section>
 
 		<section>
-			<h3>[a-] UID</h3>
+			<div>
+				<span>[UUID] a-</span>
+				<label onclick="copyUUID('uuid-lower-line')">Copy</label>
+			</div>
 			<p id="uuid-lower-line"></p>
 		</section>
 
 		<section>
-			<h3>[A] UID UP</h3>
+			<div>
+				<span>[UUID] A</span>
+				<label onclick="copyUUID('uuid-upper')">Copy</label>
+			</div>
 			<p id="uuid-upper"></p>
 		</section>
 
 		<section>
-			<h3>[A-] UID UP</h3>
+			<div>
+				<span>[UUID] A-</span>
+				<label onclick="copyUUID('uuid-upper-line')">Copy</label>
+			</div>
 			<p id="uuid-upper-line"></p>
 		</section>
 
 	</main>
-
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 	<script>
 		const uuid = crypto.randomUUID();
 		function generateUUID(uuid, type = null) {
@@ -103,8 +147,23 @@
 					return uuid;
 			}
 		}
+
+		function copyUUID(elementId) {
+			const uuidElement = document.getElementById(elementId);
+			const tempTextArea = document.createElement('textarea');
+			tempTextArea.value = uuidElement.textContent;
+			document.body.appendChild(tempTextArea);
+			tempTextArea.select();
+			document.execCommand('copy');
+			document.body.removeChild(tempTextArea);
+			document.getElementById("alert").style.display = "block";
+			document.querySelector("#alert span").textContent = uuidElement.parentNode.querySelector("div span").textContent;
+			setTimeout(function() {
+				document.getElementById("alert").style.display = "none";
+			}, 2500);
+		}
+
 		function insertUUIDs() {
-			document.getElementById('uuid').textContent = generateUUID(uuid);
 			document.getElementById('uuid-lower').textContent = generateUUID(uuid, 'lower');
 			document.getElementById('uuid-lower-line').textContent = generateUUID(uuid, 'lower-');
 			document.getElementById('uuid-upper').textContent = generateUUID(uuid, 'upper');

@@ -20,6 +20,9 @@
 			font-size: 14px;
 			box-sizing: border-box;
 		}
+
+
+		/*Light*/
 		body {
 			padding: 0;
 			margin: 0;
@@ -76,13 +79,65 @@
 			color: #FFFFFF;
 		}
 
-		@media (max-width: 900px) {
-			main {
-				flex-direction: column;
-				align-items: center;
-				padding: 5px 15px 5px 5px;
-			}
+
+		/*Dark*/
+		body.dark {
+			padding: 0;
+			margin: 0;
+			background: #1e1e1e;
+			color: #e0e0e0;
 		}
+
+		body.dark main {
+			display: flex;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: center;
+			align-items: stretch;
+			padding: 5px;
+		}
+
+		body.dark section {
+			flex: 1 1 45%;
+			width: 100%;
+			padding: 10px;
+			margin: 5px;
+			border: 1px solid #333;
+			border-radius: 5px;
+			background: #2e2e2e;
+		}
+		body.dark section div {
+			background: rgba(30, 30, 30, 0.8);
+			border-radius: 5px;
+			padding: 10px;
+			margin: 0;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			gap: 10px;
+			font-weight: bold;
+		}
+		body.dark section p {
+			text-align: center;
+			margin: 0;
+			padding: 10px 0 0 0;
+		}
+		body.dark section label {
+			font-size: 11px;
+			font-weight: 400;
+			padding: 2px 5px;
+			border-radius: 5px;
+			border: 1px solid #F54E29;
+			color: #F54E29;
+			cursor: pointer;
+			transition: all 250ms;
+		}
+		body.dark section label:hover {
+			background: #F54E29;
+			color: #FFFFFF;
+		}
+
 
 		#alert {
 			position: fixed;
@@ -96,11 +151,47 @@
 			font-size: 12px;
 			display: none;
 		}
+
+
+		#theme {
+			position: fixed;
+			width: 80px;
+			left: calc(50% - 40px);
+			bottom: 10px;
+			border: 1px solid #E2E0D8;
+			border-radius: 5px;
+			background: #FCFCFA;
+			padding: 5px 10px;
+			text-align: center;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 250ms;
+		}
+		#theme:hover {
+			letter-spacing: 0.1rem;
+		}
+		body.dark #theme {
+			border: 1px solid #333;
+			border-radius: 5px;
+			background: #2e2e2e;
+		}
+
+
+		/*Media*/
+		@media (max-width: 900px) {
+			main {
+				flex-direction: column;
+				align-items: center;
+				padding: 5px 15px 5px 5px;
+			}
+		}
 	</style>
 </head>
-<body>
+<body class="dark">
 
-	<div id="alert">Copiado <span></span></div>
+	<div id="alert">Copied <span></span></div>
+
+	<div id="theme">Theme</div>
 
 	<main>
 
@@ -137,21 +228,21 @@
 		</section>
 
 	</main>
-<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
 	<script>
 		const uuid = crypto.randomUUID();
 		function generateUUID(uuid, type = null) {
 			switch (type) {
-				case 'lower':
-					return uuid.replace(/-/g, '').toLowerCase();
-				case 'lower-':
-					return uuid.toLowerCase();
-				case 'upper':
-					return uuid.replace(/-/g, '').toUpperCase();
-				case 'upper-':
-					return uuid.toUpperCase();
-				default:
-					return uuid;
+			case 'lower':
+				return uuid.replace(/-/g, '').toLowerCase();
+			case 'lower-':
+				return uuid.toLowerCase();
+			case 'upper':
+				return uuid.replace(/-/g, '').toUpperCase();
+			case 'upper-':
+				return uuid.toUpperCase();
+			default:
+				return uuid;
 			}
 		}
 
@@ -177,6 +268,16 @@
 			document.getElementById('uuid-upper-line').textContent = generateUUID(uuid, 'upper-');
 		}
 		window.onload = insertUUIDs;
+
+		document.getElementById("theme").addEventListener("click", function() {
+			var bodyElement = document.body;
+			if (bodyElement.classList.contains("dark")) {
+				bodyElement.classList.remove("dark");
+			} else {
+				bodyElement.classList.add("dark");
+			}
+		});
+
 	</script>
 
 </body>

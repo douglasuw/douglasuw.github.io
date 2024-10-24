@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="robots" content="noindex, nofollow">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8" />
+	<meta name="robots" content="index, follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<meta property="og:title" content="UUID" />
 	<meta property="og:description" content="UUID javascript generator" />
-	<meta property="og:url" content="https://douglasuw.github.io/uuidjs.html" />
+	<meta property="og:url" content="https://douglasuw.github.io/uuid" />
 	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://db.eng.br/favicon.png?v=1" />
 
 	<title>UUID</title>
-	<link rel="icon" href="https://db.eng.br/favicon.png?v=1">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap">
+	<link rel="icon" href="https://db.eng.br/favicon.png?v=1" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" />
 	<style type="text/css">
 		* {
 			font-family: 'Source Code Pro';
@@ -230,6 +230,7 @@
 	</main>
 
 	<script>
+		// UUID creation
 		const uuid = crypto.randomUUID();
 		function generateUUID(uuid, type = null) {
 			switch (type) {
@@ -245,7 +246,7 @@
 				return uuid;
 			}
 		}
-
+		// UUID copy
 		function copyUUID(elementId) {
 			const uuidElement = document.getElementById(elementId);
 			const tempTextArea = document.createElement('textarea');
@@ -260,24 +261,73 @@
 				document.getElementById("alert").style.display = "none";
 			}, 2500);
 		}
-
+		// UUID insert HTML
 		function insertUUIDs() {
 			document.getElementById('uuid-lower').textContent = generateUUID(uuid, 'lower');
 			document.getElementById('uuid-lower-line').textContent = generateUUID(uuid, 'lower-');
 			document.getElementById('uuid-upper').textContent = generateUUID(uuid, 'upper');
 			document.getElementById('uuid-upper-line').textContent = generateUUID(uuid, 'upper-');
 		}
-		window.onload = insertUUIDs;
 
-		document.getElementById("theme").addEventListener("click", function() {
-			var bodyElement = document.body;
-			if (bodyElement.classList.contains("dark")) {
-				bodyElement.classList.remove("dark");
-			} else {
+		// Cookie creation/modify
+		function setCookie(name, value, days) {
+			let expires = "";
+			if (days) {
+				const date = new Date();
+				date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+				expires = "; expires=" + date.toUTCString();
+			}
+			document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=None; Secure";
+		}
+		// Cookie read
+		function getCookie(name) {
+			const nameEQ = name + "=";
+			const ca = document.cookie.split(';');
+			for(let i = 0; i < ca.length; i++) {
+				let c = ca[i];
+				while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+				if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+			}
+			return null;
+		}
+		// Cookie delete
+		function eraseCookie(name) {
+			document.cookie = name + '=; Max-Age=-99999999;';
+		}
+
+		// Theme apply
+		function applyTheme(theme) {
+			let bodyElement = document.body;
+			if (theme == "dark") {
 				bodyElement.classList.add("dark");
+			} else {
+				bodyElement.classList.remove("dark");
+			}
+			setCookie('douglasuw-uuid-theme', theme, 7);
+		}
+		// Theme load from cookie
+		function loadTheme() {
+			const savedTheme = getCookie('douglasuw-uuid-theme');
+			if (savedTheme) {
+				applyTheme(savedTheme);
+			} else {
+				applyTheme('dark');
+			}
+		}
+		// Theme controller
+		document.getElementById("theme").addEventListener("click", function() {
+			if (document.body.classList.contains("dark")) {
+				applyTheme("light");
+			} else {
+				applyTheme("dark");
 			}
 		});
 
+		// load Theme and UUIDs
+		window.onload = function() {
+			loadTheme();
+			insertUUIDs();
+		};
 	</script>
 
 </body>

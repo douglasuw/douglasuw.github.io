@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex, nofollow">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Lugares para Conhecer</title>
+	<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/4793/4793486.png">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			transition: all 250ms;
+		}
+
+		body {
+			font-family: Arial, sans-serif;
+			line-height: 1.6;
+			background: #f5f5f5;
+			color: #333;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			text-align: center;
+			background: #0077cc;
+			color: white;
+			padding: 1rem 0;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		}
+
+		header h1 {
+			font-size: 1.8rem;
+		}
+
+		main {
+			padding: 1rem;
+		}
+
+		#places-list {
+			display: grid;
+			gap: 1.5rem;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		}
+
+		.place-item {
+			background: white;
+			border-radius: 8px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			overflow: hidden;
+			transition: transform 0.3s ease-in-out;
+		}
+
+		.place-item img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.place-content {
+			padding: 1rem;
+		}
+
+		.place-title {
+			font-size: 1.2rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.place-description {
+			font-size: 0.9rem;
+			margin-bottom: 1rem;
+			color: #666;
+		}
+
+		.place-links a {
+			display: inline-block;
+			margin-right: 0.5rem;
+			color: #0077cc;
+			text-decoration: none;
+			font-size: 0.9rem;
+		}
+
+		.place-links a:hover {
+			text-decoration: underline;
+		}
+
+		.place-links a.map {
+			background: #E6E6E6;
+			color: #333333;
+			padding: 5px 10px;
+			border-radius: 10px;
+			font-weight: bold;
+		}
+
+		.place-links a.map:hover {
+			color: #0094FF;
+			text-decoration: none;
+		}
+
+		footer {
+			text-align: center;
+			margin-top: 2rem;
+			padding: 1rem 0;
+			background: #333;
+			color: white;
+			font-size: 0.9rem;
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<h1>Lugares para Conhecer</h1>
+	</header>
+
+	<main>
+		<section id="places-list"></section>
+	</main>
+
+	<footer>
+		<p>Feito com ❤️ para sonhar com novas aventuras!</p>
+	</footer>
+
+	<!-- JS -->
+	<script>
+		const places = [
+			{
+				title: "Pirâmides Sagradas de Grão-Pará",
+				image: "https://www.viagensecaminhos.com/wp-content/uploads/2023/05/vale-das-piramides-grao-para-sc.jpg",
+				description: "O Vale das Pirâmides Sagradas oferece diversas opções de trilhas ecológicas em frente as as sete belas montanhas íngremes e pontiagudas.",
+				mapLink: "https://maps.app.goo.gl/k3VHAH4a4VUbxZHw8",
+				otherLinks: [
+						{ text: "Pousada das Pirâmides", url: "https://pousadadaspiramides.com.br/" },
+						{ text: "Serra do Corvo Branco", url: "https://maps.app.goo.gl/ug4XhzaZFkfGXsvT7" }
+					]
+			},
+			{
+				title: "Farol de Santa Marta, Laguna",
+				image: "https://viagemeturismo.abril.com.br/wp-content/uploads/2016/12/farol-de-santa-marta-em-laguna-sc2.jpeg?resize=1000,666",
+				description: "O Farol de Santa Marta tem é uma torre quadrada com 29 metros de altura e paredes com 2 metros de espessura. Eleva-se em meio a um morro a 45 metros do nível do mar.",
+				mapLink: "https://maps.app.goo.gl/YJXT7hHUr97KcsPA7",
+				otherLinks: []
+			},
+			{
+				title: "Itapoá",
+				image: "https://blog.julianooliva.com.br/wp-content/uploads/2022/06/melhores-praias-em-Itapoa.jpg",
+				description: "tapoá é um município brasileiro, situado no estado de Santa Catarina. Localizado na região Nordeste do estado de Santa Catarina e região Sul do Brasil.",
+				mapLink: "https://maps.app.goo.gl/zgxodfRGzn6S6kze7",
+				otherLinks: []
+			},
+			{
+				title: "Praias de Garopaba",
+				image: "https://i.ytimg.com/vi/gUQNsTcvYV0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB4c8f9pw7GZC9GQ6hYKZEkO_rzYw",
+				description: "Garopaba é um município brasileiro do litoral sul do estado de Santa Catarina.",
+				mapLink: "https://maps.app.goo.gl/2YkYpBaX3Eqvfu6y8",
+				otherLinks: [
+						{ text: "TOP 10 Praias de Garopaba", url: "https://www.worldpackers.com/pt-BR/articles/praias-de-garopaba" },
+					]
+			},
+		];
+
+		function renderPlaces() {
+			const listContainer = document.getElementById("places-list");
+			places.forEach((place) => {
+				const placeItem = document.createElement("div");
+				placeItem.classList.add("place-item");
+				placeItem.innerHTML = `
+				<img src="${place.image}" alt="${place.title}">
+				<div class="place-content">
+				<h2 class="place-title">${place.title}</h2>
+				<p class="place-description">${place.description}</p>
+				<div class="place-links">
+				<a class="map" href="${place.mapLink}" target="_blank">Mapa</a>
+				${place.otherLinks
+				.map(
+					(link) =>
+					`<a href="${link.url}" target="_blank">${link.text}</a>`
+					)
+				.join("")}
+				</div>
+				</div>
+				`;
+				listContainer.appendChild(placeItem);
+			});
+		}
+
+		document.addEventListener("DOMContentLoaded", renderPlaces);
+	</script>
+
+</body>
+</html>

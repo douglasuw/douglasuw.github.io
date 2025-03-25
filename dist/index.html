@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="index, follow">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta property="og:title" content="Consumo de Combustível" />
+	<meta property="og:description" content="Cálculo de custo com Combustível" />
+	<meta property="og:url" content="https://douglasuw.github.io/dist" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://douglasuw.github.io/img/favicon-dark.png?v=1" />
+
+	<title>Consumo de Combustível</title>
+	<link rel="icon" href="https://douglasuw.github.io/img/favicon-dark.png?v=1">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			text-align: center;
+			padding: 20px;
+		}
+		.container {
+			background: white;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			max-width: 400px;
+			margin: auto;
+		}
+		input {
+			width: 100%;
+			padding: 10px;
+			margin: 10px 0;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		button {
+			background-color: #28a745;
+			color: white;
+			border: none;
+			padding: 10px;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 100%;
+		}
+		button:hover {
+			background-color: #218838;
+		}
+		.resultado {
+			margin-top: 20px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		.detalhes {
+			margin-top: 15px;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Cálculo de Consumo de Combustível</h2>
+		<label>Distância (km, ida e volta será calculado automaticamente):</label>
+		<input type="number" id="distancia" step="0.01" placeholder="Digite a distância">
+
+		<label>KM de passeio (caso haja deslocamentos adicionais):</label>
+		<input type="number" id="passeio" step="0.01" placeholder="Digite os kms extras">
+
+		<label>Consumo do carro (km/L):</label>
+		<input type="number" id="consumo" value="12" step="0.01" placeholder="Digite o consumo">
+
+		<label>Valor da gasolina (R$/L):</label>
+		<input type="number" id="precoGasolina" value="6.79" step="0.01" placeholder="Digite o valor">
+
+		<button onclick="calcular()">Calcular</button>
+
+		<div class="resultado" id="resultado"></div>
+		<div class="detalhes" id="detalhes"></div>
+	</div>
+
+	<script>
+		function calcular() {
+			let distancia = parseFloat(document.getElementById("distancia").value) || 0;
+			let passeio = parseFloat(document.getElementById("passeio").value) || 0;
+			let consumo = parseFloat(document.getElementById("consumo").value) || 12;
+			let precoGasolina = parseFloat(document.getElementById("precoGasolina").value) || 6.79;
+
+			let distanciaTotal = (distancia * 2) + passeio;
+			let litrosNecessarios = distanciaTotal / consumo;
+			let custoTotal = litrosNecessarios * precoGasolina;
+
+			let formatador = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+
+			document.getElementById("resultado").innerHTML = `
+				Custo Total: ${formatador.format(custoTotal)}
+				<br>
+				Distância Total: ${distanciaTotal.toFixed(2)} km
+			`;
+
+			document.getElementById("detalhes").innerHTML = `
+				<ul>
+					<li>Distância ida e volta: ${(distancia * 2).toFixed(2)} km</li>
+					<li>KM de passeio: ${passeio.toFixed(2)} km</li>
+					<li>Consumo do carro: ${consumo.toFixed(2)} km/L</li>
+					<li>Valor da gasolina: R$ ${precoGasolina.toFixed(2)} por litro</li>
+					<li>Litros necessários: ${litrosNecessarios.toFixed(2)} L</li>
+				</ul>
+			`;
+		}
+	</script>
+</body>
+</html>

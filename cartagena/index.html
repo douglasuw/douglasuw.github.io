@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva para Cartagena</title>
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --dark: #292F36;
+            --light: #F7FFF7;
+            --accent: #FFE66D;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background-color: rgba(41, 47, 54, 0.85);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .destination {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .date {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .time-unit {
+            flex: 1;
+            margin: 0 5px;
+        }
+        
+        .time-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px 0;
+            margin-bottom: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .time-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        
+        .message {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, var(--accent), var(--primary));
+            color: var(--dark);
+            display: none;
+            animation: pulse 2s infinite;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            top: -10px;
+            animation: confetti 5s linear forwards;
+            z-index: -1;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .destination {
+                font-size: 1.3rem;
+            }
+            
+            .time-value {
+                font-size: 2rem;
+                padding: 12px 0;
+            }
+            
+            .message {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contagem Regressiva</h1>
+        <div class="destination">Cartagena, Colômbia</div>
+        <div class="date">12 de Novembro de 2025</div>
+        
+        <div class="countdown">
+            <div class="time-unit">
+                <div class="time-value" id="days">00</div>
+                <div class="time-label">Dias</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="hours">00</div>
+                <div class="time-label">Horas</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="minutes">00</div>
+                <div class="time-label">Minutos</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="seconds">00</div>
+                <div class="time-label">Segundos</div>
+            </div>
+        </div>
+        
+        <div class="message" id="travel-message">
+            🎉 BORA CURTIR! 🎉<br>Hora de embarcar para Cartagena!
+        </div>
+        
+        <div class="footer">
+            Sua aventura está cada vez mais próxima!
+        </div>
+    </div>
+
+    <script>
+        // Data da viagem: 12 de novembro de 2025 às 17:00
+        const travelDate = new Date('2025-11-12T17:00:00').getTime();
+        
+        // Atualizar contador a cada segundo
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = travelDate - now;
+            
+            // Cálculos para dias, horas, minutos e segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Exibir resultados
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            // Quando a contagem terminar
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.querySelector(".countdown").style.display = "none";
+                document.getElementById("travel-message").style.display = "block";
+                document.querySelector(".footer").innerHTML = "Aproveite cada momento em Cartagena! 🌴☀️";
+                
+                // Criar confetes
+                createConfetti();
+            }
+        }, 1000);
+        
+        // Função para criar confetes
+        function createConfetti() {
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#FFA5A5', '#67E0C2'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = Math.random() * 10 + 5 + 'px';
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    // Remover confete após animação
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 50);
+            }
+        }
+    </script>
+</body>
+</html> 

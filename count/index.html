@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="index, follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta property="og:title" content="Count" />
+  <meta property="og:description" content="Counter +1 -1" />
+  <meta property="og:url" content="https://douglasuw.github.io/count" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://douglasuw.github.io/img/favicon-dark.png?v=1" />
+
+  <title>Count</title>
+  <link rel="icon" href="https://douglasuw.github.io/img/favicon-dark.png?v=1" />
+
+  <style>
+    :root{
+      --bg-1: #0b1020;
+      --bg-2: #0f1724;
+      --card: rgba(255,255,255,0.03);
+      --accent1: linear-gradient(135deg,#7c5cff 0%, #00d4ff 100%);
+      --accent2: linear-gradient(135deg,#00d4ff 0%, #7c5cff 100%);
+      --glass: rgba(255,255,255,0.03);
+      --btn-size: 110px;
+      --muted: rgba(255,255,255,0.65);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:28px;
+      background: radial-gradient(1000px 600px at 10% 10%, rgba(124,92,255,0.06), transparent 10%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(0,212,255,0.03), transparent 10%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:24px;
+      color:var(--muted);
+    }
+
+    .wrap{
+      display:flex;
+      gap:20px;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+      border-radius:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      box-shadow: 0 6px 30px rgba(2,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter: blur(10px) saturate(120%);
+    }
+
+    .controls{
+      display:flex;
+      gap:20px;
+      align-items:center;
+    }
+
+    button{
+      --size: var(--btn-size);
+      width:var(--size);
+      height:var(--size);
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.06);
+      color: white;
+      font-weight:700;
+      font-size:22px;
+      letter-spacing:0.6px;
+      cursor:pointer;
+      display:inline-grid;
+      place-items:center;
+      transition: transform 160ms cubic-bezier(.2,.9,.3,1), box-shadow 160ms, border-color 160ms, filter 160ms;
+      box-shadow: 0 12px 30px rgba(2,6,23,0.55);
+      background-image: var(--accent1);
+      background-size: 200% 200%;
+    }
+
+    /* make both buttons visually balanced by using different gradient directions */
+    #plus{ background-image: var(--accent1); }
+    #minus{ background-image: var(--accent2); }
+
+    button:active{ transform: translateY(2px) scale(0.99) }
+    button:hover{ transform: translateY(-6px) scale(1.03); box-shadow: 0 22px 50px rgba(2,6,23,0.75); filter:brightness(1.02) }
+    button:focus{ outline: none; box-shadow: 0 0 0 4px rgba(124,92,255,0.12), 0 18px 40px rgba(2,6,23,0.7) }
+
+    /* Visible counter shown when URL requests it */
+    .counter{
+      font-size:48px;
+      font-weight:700;
+      color:white;
+      padding:6px 14px;
+      border-radius:12px;
+      min-width:120px;
+      text-align:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    @media (max-width:420px){
+      :root{ --btn-size:86px }
+      button{ font-size:18px }
+      .counter{ font-size:34px; min-width:90px }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" role="group" aria-label="Controles de contagem">
+    <div id="counterWrap" style="display:none; margin-bottom:8px;">
+      <div id="counter" class="counter">0</div>
+    </div>
+    <div class="controls">
+      <button id="minus" aria-label="Diminuir um">-1</button>
+      <button id="plus" aria-label="Adicionar um">+1</button>
+    </div>
+  </div>
+
+  <div id="live" class="sr-only" aria-live="polite">0</div>
+
+  <script>
+    const KEY = 'contador_persistente_v1';
+
+    function readCount(){
+      const raw = localStorage.getItem(KEY);
+      const n = raw === null ? 0 : parseInt(raw, 10);
+      return Number.isNaN(n) ? 0 : n;
+    }
+
+    function writeCount(v){
+      localStorage.setItem(KEY, String(v));
+      document.getElementById('live').textContent = String(v);
+      const c = document.getElementById('counter');
+      if(c) c.textContent = String(v);
+    }
+
+    let count = readCount();
+    writeCount(count);
+
+    function update(delta){
+      // lê novamente para manter sincronização entre abas
+      const current = readCount();
+      const next = current + delta;
+      writeCount(next);
+      animateFlash(delta > 0 ? document.getElementById('plus') : document.getElementById('minus'));
+      console.log('Contador:', next);
+    }
+
+    function animateFlash(el){
+      el.animate([
+        { transform: 'translateY(0) scale(1)' },
+        { transform: 'translateY(-6px) scale(1.04)' },
+        { transform: 'translateY(0) scale(1)' }
+      ], { duration: 300, easing: 'cubic-bezier(.2,.9,.3,1)' });
+    }
+
+    document.getElementById('plus').addEventListener('click', ()=> update(1));
+    document.getElementById('minus').addEventListener('click', ()=> update(-1));
+
+    window.addEventListener('keydown', (e)=>{
+      const tag = (e.target && e.target.tagName) || '';
+      if(['INPUT','TEXTAREA','SELECT'].includes(tag)) return;
+      if(e.key === '+' || e.key === '='){ update(1); }
+      if(e.key === '-' || e.key === '_'){ update(-1); }
+    });
+
+    window.addEventListener('storage', (e)=>{
+      if(e.key === KEY){
+        const val = readCount();
+        writeCount(val);
+        console.log('Sincronizado a partir de outra aba:', val);
+      }
+    });
+
+    // Detecta se deve mostrar o contador na interface a partir da URL
+    (function handleUrlShow(){
+      const params = new URLSearchParams(location.search);
+      const pathSegs = location.pathname.split('/').filter(Boolean);
+
+      const showByQuery = params.has('count');
+      const showByPath = pathSegs.some(s => s === 'count' || /^\d+$/.test(s));
+
+      const shouldShow = showByQuery || showByPath;
+      if(shouldShow){
+        const wrap = document.getElementById('counterWrap');
+        wrap.style.display = 'block';
+        // if path contains a number, optionally use it as starting override (but keep storage authoritative)
+        const numSeg = pathSegs.find(s => /^\d+$/.test(s));
+        if(numSeg){
+          // show stored value but briefly flash the numeric segment as hint (non-destructive)
+          const c = document.getElementById('counter');
+          c.textContent = String(readCount());
+          c.animate([
+            { opacity: 0.5, transform: 'translateY(4px) scale(0.98)' },
+            { opacity: 1, transform: 'translateY(0) scale(1)' }
+          ], { duration: 420, easing: 'cubic-bezier(.2,.9,.3,1)' });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

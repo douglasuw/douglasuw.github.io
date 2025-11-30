@@ -182,11 +182,22 @@
     // Detecta se deve mostrar o contador na interface a partir da URL
     (function handleUrlShow(){
       const params = new URLSearchParams(location.search);
+      const shouldShow = params.get('count') === 'y';
+      if(shouldShow){
+        const wrap = document.getElementById('counterWrap');
+        wrap.style.display = 'block';
+        const c = document.getElementById('counter');
+        c.textContent = String(readCount());
+      }
+    })();
+  
+    function handleUrlShow(){
+      const params = new URLSearchParams(location.search);
       const pathSegs = location.pathname.split('/').filter(Boolean);
-
+  
       const showByQuery = params.has('count');
       const showByPath = pathSegs.some(s => s === 'count' || /^\d+$/.test(s));
-
+  
       const shouldShow = showByQuery || showByPath;
       if(shouldShow){
         const wrap = document.getElementById('counterWrap');
@@ -204,6 +215,6 @@
         }
       }
     })();
-  </script>
+</script>
 </body>
 </html>

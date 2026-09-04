@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Douglas Alexandre Sousa — Desenvolvedor Fullstack</title>
+<link rel="icon" href="https://douglasuw.github.io/img/favicon.png?v=1" />
+<meta name="description" content="Douglas Alexandre Sousa — Engenheiro Civil e Desenvolvedor Fullstack. Currículo e portfólio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+<style>
+  :root{
+    --bg: #0b0e13;
+    --bg-raised: #10141c;
+    --bg-inset: #080a0e;
+    --line: #1e2530;
+    --line-soft: #171c25;
+    --text: #dde3ea;
+    --text-dim: #8992a3;
+    --text-faint: #545e6e;
+    --blue: #6ca0f6;
+    --green: #7ee0b3;
+    --amber: #f2b75c;
+    --rose: #e88fa2;
+    --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --maxw: 860px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--blue); color:#0b0e13;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* subtle vertical line + line-number rail, like an editor gutter */
+  .rail{
+    position:fixed; top:0; left:0; bottom:0; width:56px;
+    border-right:1px solid var(--line-soft);
+    display:none;
+    flex-direction:column; align-items:center;
+    padding-top:32px;
+    gap:28px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--text-faint);
+    z-index:20;
+  }
+  .rail a{color:var(--text-faint); text-decoration:none; writing-mode:vertical-rl; letter-spacing:.08em;}
+  .rail a.active, .rail a:hover{color:var(--blue);}
+  @media (min-width:1180px){ .rail{display:flex;} body{padding-left:56px;} }
+
+  header.top{
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-faint);
+  }
+  .eyebrow .p{color:var(--green);}
+  .eyebrow .k{color:var(--blue);}
+  h1{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:clamp(28px, 5vw, 44px);
+    letter-spacing:-0.01em;
+    margin:14px 0 6px;
+    color:#f2f5f9;
+  }
+  .role-line{
+    font-family:var(--mono);
+    font-size:clamp(14px,2.4vw,17px);
+    color:var(--text-dim);
+    margin:0 0 26px;
+  }
+  .role-line .kw{color:var(--rose);}
+  .role-line .str{color:var(--green);}
+  .role-line .op{color:var(--text-faint);}
+
+  .pitch{
+    max-width:62ch;
+    font-size:16.5px;
+    color:var(--text);
+  }
+
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:10px 22px;
+    margin-top:26px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-dim);
+    align-items:center;
+  }
+  .status-chip{
+    display:inline-flex; align-items:center; gap:7px;
+    border:1px solid #244035; background:#0e1a15; color:var(--green);
+    padding:5px 11px; border-radius:3px; font-size:12.5px;
+  }
+  .status-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--green); box-shadow:0 0 0 3px rgba(126,224,179,.15);}
+
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px;}
+  .btn{
+    font-family:var(--mono);
+    font-size:13.5px;
+    padding:11px 18px;
+    border-radius:3px;
+    text-decoration:none;
+    border:1px solid var(--line);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .btn-primary{background:var(--blue); color:#0a0e14; border-color:var(--blue); font-weight:600;}
+  .btn-primary:hover{background:#84b1f8;}
+  .btn-ghost{color:var(--text); background:transparent;}
+  .btn-ghost:hover{border-color:var(--blue); color:var(--blue);}
+
+  /* section chrome */
+  section{padding:56px 0; border-bottom:1px solid var(--line-soft);}
+  .sec-head{
+    display:flex; align-items:baseline; gap:10px;
+    font-family:var(--mono);
+    margin-bottom:26px;
+  }
+  .sec-head .idx{color:var(--text-faint); font-size:13px;}
+  .sec-head h2{
+    font-size:19px; margin:0; font-weight:600; color:#eef1f6;
+  }
+  .sec-head .ext{color:var(--text-faint); font-size:14px;}
+
+  #sobre .pitch{max-width:70ch; font-size:16px; color:var(--text-dim);}
+  #sobre .pitch strong{color:var(--text); font-weight:600;}
+
+  /* stack */
+  .stack-group{margin-bottom:28px;}
+  .stack-group h3{
+    font-family:var(--mono); font-size:12.5px; font-weight:500;
+    color:var(--text-faint); margin:0 0 12px;
+  }
+  .stack-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(84px,1fr));
+    gap:10px;
+  }
+  .tile{
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:14px 8px 10px;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    text-align:center;
+  }
+  .tile i{font-size:26px;}
+  .tile .txt-ico{
+    font-family:var(--mono); font-weight:700; font-size:13px;
+    color:var(--blue); height:26px; display:flex; align-items:center;
+  }
+  .tile span{font-family:var(--mono); font-size:11px; color:var(--text-dim);}
+
+  /* experiencia */
+  .commit{
+    display:grid;
+    grid-template-columns:104px 1fr;
+    gap:18px;
+    padding:20px 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .commit:first-of-type{border-top:none; padding-top:0;}
+  .commit-meta{font-family:var(--mono); font-size:12px; color:var(--text-faint); line-height:1.9;}
+  .commit-meta .hash{color:var(--amber);}
+  .commit-body h3{margin:0 0 2px; font-size:16px; color:#eef1f6; font-weight:600;}
+  .commit-body .company{
+    font-family:var(--mono); font-size:13px; color:var(--blue); margin-bottom:10px;
+  }
+  .commit-body p{margin:0 0 12px; color:var(--text-dim); font-size:14.5px; max-width:64ch;}
+  .tags{display:flex; flex-wrap:wrap; gap:7px;}
+  .tag{
+    font-family:var(--mono); font-size:11px; color:var(--text-dim);
+    border:1px solid var(--line); border-radius:3px; padding:3px 8px;
+  }
+  @media (max-width:560px){
+    .commit{grid-template-columns:1fr;}
+    .commit-meta{display:flex; gap:14px; flex-wrap:wrap;}
+  }
+
+  /* projetos */
+  .proj-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:14px;
+  }
+  @media (max-width:640px){ .proj-grid{grid-template-columns:1fr;} }
+  .proj-card{
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:20px;
+    display:flex; flex-direction:column; gap:10px;
+    text-decoration:none;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .proj-card:hover{border-color:var(--blue); transform:translateY(-2px);}
+  .proj-card .p-name{font-weight:600; color:#eef1f6; font-size:15.5px;}
+  .proj-card .p-desc{color:var(--text-dim); font-size:13.5px; flex:1;}
+  .proj-card .p-url{font-family:var(--mono); font-size:12px; color:var(--green);}
+
+  /* educacao */
+  .edu-item{padding:16px 0; border-top:1px solid var(--line-soft);}
+  .edu-item:first-child{border-top:none; padding-top:0;}
+  .edu-item .deg{font-weight:600; color:#eef1f6; font-size:15.5px;}
+  .edu-item .inst{font-family:var(--mono); font-size:13px; color:var(--text-dim); margin-top:3px;}
+  .edu-item .yr{font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-top:3px;}
+
+  /* contato */
+  footer{padding:64px 0 90px; border-bottom:none;}
+  .fn-call{
+    font-family:var(--mono); font-size:14px; color:var(--text-dim);
+    background:var(--bg-inset); border:1px solid var(--line);
+    border-radius:6px; padding:20px 22px; margin-bottom:26px;
+    overflow-x:auto; white-space:pre;
+  }
+  .fn-call .fn{color:var(--blue);}
+  .fn-call .key{color:var(--text-faint);}
+  .fn-call .val{color:var(--green);}
+  footer .foot-note{font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-top:36px;}
+
+  .reveal{opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} html{scroll-behavior:auto;} }
+</style>
+</head>
+<body>
+
+<nav class="rail" id="rail">
+  <a href="#inicio">início</a>
+  <a href="#sobre">01·sobre</a>
+  <a href="#stack">02·stack</a>
+  <a href="#experiencia">03·experiência</a>
+  <a href="#projetos">04·projetos</a>
+  <a href="#educacao">05·educação</a>
+  <a href="#contato">06·contato</a>
+</nav>
+
+<div class="wrap">
+
+  <header class="top" id="inicio">
+    <div class="eyebrow"><span class="p">~/douglas</span> <span class="k">$</span> whoami</div>
+    <h1>Douglas Alexandre Sousa</h1>
+    <p class="role-line"><span class="kw">const</span> cargo <span class="op">=</span> <span class="str">"Desenvolvedor Fullstack"</span><span class="op">;</span></p>
+
+    <p class="pitch">Depois de anos projetando estruturas e laudos técnicos como engenheiro civil, migrei a rotina para desenvolvimento de software. Hoje construo produtos web do frontend ao backend, automatizo processos com Python e aplico IA para reduzir trabalho manual — sempre com a mesma disciplina técnica que trouxe da engenharia.</p>
+
+    <div class="meta-row">
+      <span class="status-chip"><span class="dot"></span>disponível para novas oportunidades</span>
+      <span>31 anos</span>
+      <span>São José / SC</span>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-ghost" href="mailto:douglasalexandresousa@gmail.com">Enviar e-mail</a>
+      <a class="btn btn-ghost" href="https://wa.me/5548999237664" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/douglasalexandresousa/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <section id="sobre" class="reveal">
+    <div class="sec-head"><span class="idx">01</span><h2>sobre.md</h2><span class="ext">— perfil</span></div>
+    <p class="pitch">Experiência multidisciplinar em tecnologia, automação e engenharia: criação de soluções digitais, integrações e aplicações de inteligência artificial voltadas à redução de tarefas manuais e ao ganho de eficiência operacional. <strong>Atuação prática com PHP, Python e JavaScript</strong> (Node.js, Next.js e React), prototipação rápida, documentação de processos e gestão de múltiplas demandas em colaboração entre áreas técnicas e de negócio. Forte capacidade analítica, aprendizado contínuo e foco em soluções escaláveis, orientadas a impacto e resultado.</p>
+  </section>
+
+  <section id="stack" class="reveal">
+    <div class="sec-head"><span class="idx">02</span><h2>stack/</h2><span class="ext">— tecnologias</span></div>
+
+    <div class="stack-group">
+      <h3>frontend</h3>
+      <div class="stack-grid">
+        <div class="tile"><i class="devicon-react-original colored"></i><span>React</span></div>
+        <div class="tile"><i class="devicon-nextjs-plain"></i><span>Next.js</span></div>
+        <div class="tile"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div>
+        <div class="tile"><i class="devicon-jquery-plain colored"></i><span>jQuery</span></div>
+        <div class="tile"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div>
+        <div class="tile"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div>
+        <div class="tile"><i class="devicon-chakraui-plain colored"></i><span>ChakraUI</span></div>
+        <div class="tile"><i class="devicon-tailwindcss-original colored"></i><span>TailwindCSS</span></div>
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <h3>backend &amp; automação</h3>
+      <div class="stack-grid">
+        <div class="tile"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div>
+        <div class="tile"><i class="devicon-python-plain colored"></i><span>Python</span></div>
+        <div class="tile"><i class="devicon-php-plain colored"></i><span>PHP</span></div>
+        <div class="tile"><div class="txt-ico">XLS</div><span>Excel</span></div>
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <h3>dados</h3>
+      <div class="stack-grid">
+        <div class="tile"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
+        <div class="tile"><i class="devicon-mariadb-original"></i><span>MariaDB</span></div>
+        <div class="tile"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></div>
+        <div class="tile"><i class="devicon-microsoftsqlserver-plain colored"></i><span>SQL Server</span></div>
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <h3>infra</h3>
+      <div class="stack-grid">
+        <div class="tile"><i class="devicon-amazonwebservices-plain-wordmark colored"></i><span>AWS</span></div>
+        <div class="tile"><i class="devicon-vercel-original"></i><span>Vercel</span></div>
+        <div class="tile"><i class="devicon-supabase-plain colored"></i><span>Supabase</span></div>
+      </div>
+    </div>
+
+    <div class="stack-group">
+      <h3>ferramentas</h3>
+      <div class="stack-grid">
+        <div class="tile"><i class="devicon-insomnia-plain colored"></i><span>Insomnia</span></div>
+        <div class="tile"><i class="devicon-postman-plain colored"></i><span>Postman</span></div>
+        <div class="tile"><i class="devicon-git-plain colored"></i><span>Git</span></div>
+        <div class="tile"><i class="devicon-github-original"></i><span>GitHub</span></div>
+        <div class="tile"><i class="devicon-githubactions-plain colored"></i><span>Actions</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiencia" class="reveal">
+    <div class="sec-head"><span class="idx">03</span><h2>experiência.log</h2><span class="ext">— git log --reverse=false</span></div>
+
+    <div class="commit">
+      <div class="commit-meta"><span class="hash">#a1c9f3e</span><br>09/2025 → 04/2026</div>
+      <div class="commit-body">
+        <h3>Engenheiro de Desenvolvimento e Automação para Engenharia</h3>
+        <div class="company">ArqGen Arquitetura Generativa</div>
+        <p>Desenvolvimento web frontend e backend de plataforma para otimização e geração de soluções de engenharia e arquitetura usando algoritmos e IA.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Node.js</span><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">Chakra UI</span><span class="tag">Git</span><span class="tag">AWS</span></div>
+      </div>
+    </div>
+
+    <div class="commit">
+      <div class="commit-meta"><span class="hash">#7b2e04d</span><br>01/2022 → 06/2025</div>
+      <div class="commit-body">
+        <h3>Analista de Desenvolvimento para Engenharia BIM</h3>
+        <div class="company">AltoQi Tecnologia Aplicada à Engenharia</div>
+        <p>Desenvolvimento web na equipe AltoQi Cloud, software BIM aplicado à engenharia.</p>
+        <div class="tags"><span class="tag">CSS</span><span class="tag">HTML</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">jQuery</span><span class="tag">SQL Server</span><span class="tag">Git</span><span class="tag">AWS</span></div>
+      </div>
+    </div>
+
+    <div class="commit">
+      <div class="commit-meta"><span class="hash">#4f81c2a</span><br>10/2021 → 02/2025</div>
+      <div class="commit-body">
+        <h3>Desenvolvedor de Automações e Soluções</h3>
+        <div class="company">Artibus Tecnologia</div>
+        <p>Automação com Python e documentação de processos; controle empresarial com sistemas de gerenciamento; manipulação de planilhas para criação de relatórios; desenvolvimento de sistemas web e websites — inclusive os próprios projetos da Artibus, listados em portfólio abaixo.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Node.js</span><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">GitHub</span><span class="tag">Excel</span><span class="tag">AWS</span></div>
+      </div>
+    </div>
+
+    <div class="commit">
+      <div class="commit-meta"><span class="hash">#0d5e9b1</span><br>02/2018 → 12/2024</div>
+      <div class="commit-body">
+        <h3>Engenheiro Civil — Profissional Liberal</h3>
+        <div class="company">Atuação autônoma</div>
+        <p>Elaboração de projetos estruturais, arquitetônicos, elétricos e hidrossanitários para edificações residenciais e comerciais de pequeno e médio porte. Desenvolvimento de laudos técnicos de avaliações, regularizações e processos para obtenção de alvarás.</p>
+      </div>
+    </div>
+
+    <div class="commit">
+      <div class="commit-meta"><span class="hash">#c22a710</span><br>11/2019 → 09/2021</div>
+      <div class="commit-body">
+        <h3>Assistente de Repactuação Sênior</h3>
+        <div class="company">Liderança Serviços</div>
+        <p>Gestão e repactuação de contratos administrativos junto à Administração Pública: análise de planilhas de custos, termos aditivos, indicadores de desempenho e conformidade com legislações e convenções coletivas. Participação em processos licitatórios e otimização de rotinas administrativas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos" class="reveal">
+    <div class="sec-head"><span class="idx">04</span><h2>projetos/</h2><span class="ext">— no ar, em produção</span></div>
+    <div class="proj-grid">
+
+      <a class="proj-card" href="https://artibus.com.br" target="_blank" rel="noopener">
+        <div class="p-name">Artibus Tecnologia</div>
+        <div class="p-desc">Agência própria: criação de sites, landing pages e automações de processos com Python para empresas.</div>
+        <div class="p-url">artibus.com.br</div>
+      </a>
+
+      <a class="proj-card" href="https://artibus.com.br/condominios" target="_blank" rel="noopener">
+        <div class="p-name">Artibus Condomínios</div>
+        <div class="p-desc">SaaS para síndicos profissionais controlarem manutenções e vencimentos de vários condomínios, com alertas automáticos.</div>
+        <div class="p-url">artibus.com.br/condominios</div>
+      </a>
+
+      <a class="proj-card" href="https://leonardosousaimob.github.io" target="_blank" rel="noopener">
+        <div class="p-name">Leonardo Sousa Imóveis</div>
+        <div class="p-desc">Site institucional para corretor de imóveis.</div>
+        <div class="p-url">leonardosousaimob.github.io</div>
+      </a>
+
+      <a class="proj-card" href="https://fgasophia.github.io" target="_blank" rel="noopener">
+        <div class="p-name">Fonoaudióloga Sophia Rodrigues</div>
+        <div class="p-desc">Currículo one-page para fonoaudióloga clínica, com formação, experiência e habilidades.</div>
+        <div class="p-url">fgasophia.github.io</div>
+      </a>
+
+      <a class="proj-card" href="https://icmsc.github.io/biblia" target="_blank" rel="noopener">
+        <div class="p-name">Bíblia Online</div>
+        <div class="p-desc">Leitor de Bíblia online com três versões de tradução disponíveis.</div>
+        <div class="p-url">icmsc.github.io/biblia</div>
+      </a>
+
+      <a class="proj-card" href="https://mugbug.vercel.app" target="_blank" rel="noopener">
+        <div class="p-name">MugBug</div>
+        <div class="p-desc">Produto que transforma dados do GitHub do usuário (username, avatar, linguagem) em arte para caneca personalizada.</div>
+        <div class="p-url">mugbug.vercel.app</div>
+      </a>
+
+      <a class="proj-card" href="https://personalia.com.br" target="_blank" rel="noopener">
+        <div class="p-name">Personalia</div>
+        <div class="p-desc">Site e loja online de produtos personalizados.</div>
+        <div class="p-url">personalia.com.br</div>
+      </a>
+
+      <a class="proj-card" href="https://crisbonatelli.com.br" target="_blank" rel="noopener">
+        <div class="p-name">Cris Bonatelli</div>
+        <div class="p-desc">Site para ateliê de costuras e bordados.</div>
+        <div class="p-url">crisbonatelli.com.br</div>
+      </a>
+
+      <a class="proj-card" href="https://hub.eng.br" target="_blank" rel="noopener">
+        <div class="p-name">Engenheiro Civil Douglas Sousa</div>
+        <div class="p-desc">Currículo one-page para engenheiro civil, com formação, experiência e habilidades.</div>
+        <div class="p-url">hub.eng.br</div>
+      </a>
+
+    </div>
+  </section>
+
+  <section id="educacao" class="reveal">
+    <div class="sec-head"><span class="idx">05</span><h2>educação.md</h2></div>
+
+    <div class="edu-item">
+      <div class="deg">Pós-graduação em Avaliações, Perícias e Engenharia Diagnóstica</div>
+      <div class="inst">BSSP Centro Educacional</div>
+      <div class="yr">2020 — 2022</div>
+    </div>
+    <div class="edu-item">
+      <div class="deg">Bacharelado em Engenharia Civil</div>
+      <div class="inst">Universidade Paulista (UNIP)</div>
+      <div class="yr">2013 — 2017</div>
+    </div>
+  </section>
+
+  <footer id="contato" class="reveal">
+    <div class="sec-head"><span class="idx">06</span><h2>contato()</h2></div>
+    <div class="fn-call"><span class="fn">contatar</span>({
+  <span class="key">email:</span> <span class="val">"douglasalexandresousa@gmail.com"</span>,
+  <span class="key">whatsapp:</span> <span class="val">"(48) 99923-7664"</span>,
+  <span class="key">linkedin:</span> <span class="val">"/in/douglasalexandresousa"</span>,
+  <span class="key">local:</span> <span class="val">"São José, SC"</span>
+})</div>
+    <div class="cta-row">
+      <a class="btn btn-ghost" href="mailto:douglasalexandresousa@gmail.com">Enviar e-mail</a>
+      <a class="btn btn-ghost" href="https://wa.me/5548999237664" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/douglasalexandresousa/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="foot-note">Douglas Alexandre Sousa — atualizado em 2026.</div>
+  </footer>
+
+</div>
+
+<script>
+  // scroll-spy pra iluminar a seção ativa no rail
+  const links = document.querySelectorAll('.rail a[href^="#"]');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  function onScroll(){
+    let current = sections[0];
+    const y = window.scrollY + 140;
+    sections.forEach(s => { if (s.offsetTop <= y) current = s; });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current.id));
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
